@@ -1,0 +1,43 @@
+// Dockerイメージをビルドする
+docker build --tag webapp-docker .
+
+// 作成されたDockerイメージを確認する
+docker images
+
+// Dockerイメージにタグをつける
+docker tag webapp-docker:latest webapp-docker:v1.0.0
+    webapp-dockerにv1.0.0という名前のタグをつける
+
+// タグのついたDockerイメージを削除
+docker rmi webapp-docker:v1.0.0
+
+// Dockerイメージでコンテナを立ち上げる
+docker run webapp-docker
+    コンテナの停止には ctrl + c を使用する
+
+// ポートを公開してコンテナを立ち上げる　
+docker run --publish 8000:5000 webapp-docker
+    --publish (ホストポート):(コンテナポート)
+
+// バックグラウンドでコンテナを起動(デタッチモード)
+docker run -d -p 8000:5000 webapp-docker
+
+// Dockerコンテナの状態を確認
+docker ps 
+
+// Dockerコンテナの詳細を表示
+docker ps -a
+
+// Dockerコンテナを停止
+docker stop (docker ps の NAMES欄に表示された名前)
+
+// Dockerコンテナの再起動
+docker restart (docker ps の NAMES欄に表示された名前)
+
+// Dockerコンテナの削除
+docker rm (docker ps の NAMES欄に表示された名前)
+    // 後ろにコンテナ名を複数指定して削除することも可能
+
+//Dockerコンテナに名前を付けて起動
+docker run -d -p 8000:5000 --name ( 任意の名前 ) ( コンテナの名前 )
+
